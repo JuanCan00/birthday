@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎂 ¿Es tu cumpleaños?</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <!-- Canvas para fuegos artificiales -->
+  <canvas id="fireworks-canvas"></canvas>
+
+  <!-- Fondo con overlay -->
+  <div class="bg-overlay"></div>
+
+  <!-- Partículas decorativas flotantes -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Contenedor principal -->
+  <main class="landing">
+
+    <!-- Tarjeta de vidrio -->
+    <div class="glass-card" id="main-card">
+
+      <!-- Ícono decorativo -->
+      <div class="deco-icon">✦</div>
+
+      <!-- Título principal -->
+      <h1 class="main-title">
+        <span class="title-small">dime,</span>
+        <span class="title-big">¿hoy es tu<br/>cumpleaños?</span>
+      </h1>
+
+      <p class="subtitle">Ingresa tu fecha y lo celebramos juntos 🌸</p>
+
+      <!-- Formulario de fecha -->
+      <div class="form-group" id="form-section">
+        <div class="inputs-row">
+          <div class="input-wrapper">
+            <label for="day">Día</label>
+            <input
+              type="number"
+              id="day"
+              placeholder="DD"
+              min="1"
+              max="31"
+              maxlength="2"
+            />
+          </div>
+
+          <div class="input-divider">·</div>
+
+          <div class="input-wrapper">
+            <label for="month">Mes</label>
+            <input
+              type="number"
+              id="month"
+              placeholder="MM"
+              min="1"
+              max="12"
+              maxlength="2"
+            />
+          </div>
+        </div>
+
+        <button class="celebrate-btn" id="celebrate-btn">
+          <span class="btn-text">Celebrar</span>
+          <span class="btn-icon">✨</span>
+        </button>
+      </div>
+
+      <!-- Mensaje de resultado -->
+      <div class="result-section hidden" id="result-section">
+        <div class="result-message" id="result-message"></div>
+        <button class="reset-btn" id="reset-btn">← Volver</button>
+      </div>
+
+    </div><!-- /glass-card -->
+
+  </main>
+
+  <!-- =============================================
+       OVERLAY GALERÍA — aparece sobre todo
+       ============================================= -->
+  <div class="gallery-overlay hidden" id="photostrip">
+
+    <!-- Panel central -->
+    <div class="overlay-panel">
+
+      <!-- Botón cerrar -->
+      <button class="overlay-close" id="overlay-close" aria-label="Cerrar">✕</button>
+
+      <!-- Título -->
+      <div class="overlay-title">
+        <span class="overlay-label">✦ nuestros momentos ✦</span>
+        <div class="strip-nav">
+          <button class="nav-btn" id="nav-prev" aria-label="Anterior">‹</button>
+          <span class="strip-counter" id="strip-counter">1 / 4</span>
+          <button class="nav-btn" id="nav-next" aria-label="Siguiente">›</button>
+        </div>
+      </div>
+
+      <!-- Tiras de fotos -->
+      <div class="strips-viewport">
+
+        <!-- TIRA 1 — fotos 1–8 -->
+        <div class="strip-wrap active" data-strip="0">
+          <div class="photo-item" style="--rot:-2deg;  --delay:.08s"><img src="../images/photo1.jpg"  alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">siempre juntos 💕</span></div>
+          <div class="photo-item" style="--rot: 1.5deg;--delay:.16s"><img src="../images/photo2.jpg"  alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">recuerdos dorados ✨</span></div>
+          <div class="photo-item" style="--rot:-1deg;  --delay:.24s"><img src="../images/photo3.jpg"  alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">momentos únicos 🌸</span></div>
+          <div class="photo-item" style="--rot: 2deg;  --delay:.32s"><img src="../images/photo4.jpg"  alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">felicidad pura 🎉</span></div>
+          <div class="photo-item" style="--rot:-1.5deg;--delay:.40s"><img src="../images/photo5.jpg"  alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">luz y amor 🌟</span></div>
+          <div class="photo-item" style="--rot: 1deg;  --delay:.48s"><img src="../images/photo6.jpg"  alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">risas infinitas 😄</span></div>
+          <div class="photo-item" style="--rot:-2.5deg;--delay:.56s"><img src="../images/photo7.jpg"  alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">instantes mágicos 🪄</span></div>
+          <div class="photo-item" style="--rot: 2deg;  --delay:.64s"><img src="../images/photo8.jpg"  alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">contigo todo brilla ⭐</span></div>
+        </div>
+
+        <!-- TIRA 2 — fotos 9–16 -->
+        <div class="strip-wrap" data-strip="1">
+          <div class="photo-item" style="--rot: 1deg;  --delay:.08s"><img src="../images/photo9.jpg"  alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">te quiero mucho 🤍</span></div>
+          <div class="photo-item" style="--rot:-2deg;  --delay:.16s"><img src="../images/photo10.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">cada segundo contigo 🌙</span></div>
+          <div class="photo-item" style="--rot: 2.5deg;--delay:.24s"><img src="../images/photo11.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">amor eterno 💗</span></div>
+          <div class="photo-item" style="--rot:-1deg;  --delay:.32s"><img src="../images/photo12.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">sonrisas reales 😊</span></div>
+          <div class="photo-item" style="--rot: 1.5deg;--delay:.40s"><img src="../images/photo13.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">nuestro mundo 🌍</span></div>
+          <div class="photo-item" style="--rot:-2.5deg;--delay:.48s"><img src="../images/photo14.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">magia pura ✨</span></div>
+          <div class="photo-item" style="--rot: 2deg;  --delay:.56s"><img src="../images/photo15.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">aventuras juntos 🗺️</span></div>
+          <div class="photo-item" style="--rot:-1.5deg;--delay:.64s"><img src="../images/photo16.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">recuerdos del alma 🌸</span></div>
+        </div>
+
+        <!-- TIRA 3 — fotos 17–24 -->
+        <div class="strip-wrap" data-strip="2">
+          <div class="photo-item" style="--rot:-1deg;  --delay:.08s"><img src="../images/photo17.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">siempre presentes 💫</span></div>
+          <div class="photo-item" style="--rot: 2deg;  --delay:.16s"><img src="../images/photo18.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">más que amigos 🫶</span></div>
+          <div class="photo-item" style="--rot:-2deg;  --delay:.24s"><img src="../images/photo19.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">momentos de oro 🏅</span></div>
+          <div class="photo-item" style="--rot: 1.5deg;--delay:.32s"><img src="../images/photo20.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">luz de mi vida 🕯️</span></div>
+          <div class="photo-item" style="--rot:-1.5deg;--delay:.40s"><img src="../images/photo21.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">puro amor 💖</span></div>
+          <div class="photo-item" style="--rot: 2.5deg;--delay:.48s"><img src="../images/photo22.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">días perfectos 🌤️</span></div>
+          <div class="photo-item" style="--rot:-2deg;  --delay:.56s"><img src="../images/photo23.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">memorias que duran 📸</span></div>
+          <div class="photo-item" style="--rot: 1deg;  --delay:.64s"><img src="../images/photo24.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">instantes únicos 🎞️</span></div>
+        </div>
+
+        <!-- TIRA 4 — fotos 25–31 -->
+        <div class="strip-wrap" data-strip="3">
+          <div class="photo-item" style="--rot:-1deg;  --delay:.08s"><img src="../images/photo25.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">nuestras risas 😂</span></div>
+          <div class="photo-item" style="--rot: 2deg;  --delay:.16s"><img src="../images/photo26.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">un millón de gracias 🙏</span></div>
+          <div class="photo-item" style="--rot:-2deg;  --delay:.24s"><img src="../images/photo27.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">el mejor regalo 🎁</span></div>
+          <div class="photo-item" style="--rot: 1.5deg;--delay:.32s"><img src="../images/photo28.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">contigo siempre 🌺</span></div>
+          <div class="photo-item" style="--rot:-2.5deg;--delay:.40s"><img src="../images/photo29.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">más años juntos 🎂</span></div>
+          <div class="photo-item" style="--rot: 1deg;  --delay:.48s"><img src="../images/photo30.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">tú y yo, siempre 💞</span></div>
+          <div class="photo-item" style="--rot:-1.5deg;--delay:.56s"><img src="../images/photo31.jpg" alt="" onerror="this.parentElement.classList.add('no-img')"/><span class="photo-caption">♡ para siempre ♡</span></div>
+        </div>
+
+      </div><!-- /strips-viewport -->
+
+      <div class="photo-strip-footer">♡ con todo el amor del mundo ♡</div>
+
+    </div><!-- /overlay-panel -->
+  </div><!-- /gallery-overlay -->
+
+  <script src="../js/config.js"></script>
+  <script src="../js/fireworks.js"></script>
+  <script src="../js/photostrip.js"></script>
+  <script src="../js/audio.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>
