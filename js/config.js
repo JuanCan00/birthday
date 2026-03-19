@@ -10,8 +10,8 @@ const CONFIG = {
      Pon el día y mes de la persona que festeja.
   ────────────────────────────────────────── */
   birthday: {
-    day:   15,   // ← cambia el día
-    month:  8    // ← cambia el mes (8 = agosto)
+    day:   19,   // ← cambia el día
+    month:  3    // ← cambia el mes (8 = agosto)
   },
 
   /* ──────────────────────────────────────────
