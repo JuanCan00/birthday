@@ -8,50 +8,42 @@
 ```
 birthday/
 │
-├── html/
-│   └── index.html          ← Página principal (ábrela aquí)
-│
-├── css/
-│   └── styles.css          ← Todos los estilos visuales
-│
-├── js/
-│   ├── config.js           ← ⭐ Configuración principal (edita aquí)
-│   ├── fireworks.js        ← Motor de fuegos artificiales (canvas)
-│   ├── photostrip.js       ← Lógica de la tira de fotos
-│   ├── audio.js            ← Gestión de audios
-│   └── app.js              ← Lógica principal de la app
-│
-├── audio/                  ← Pon aquí tus archivos de audio (.mp3)
-│   ├── ambient.mp3         (opcional – música de fondo suave)
-│   ├── click.mp3           (opcional – sonido al presionar Celebrar)
-│   ├── celebration.mp3     (opcional – sonido de celebración)
-│   └── soft.mp3            (opcional – sonido suave si no es cumpleaños)
-│
-├── images/                 ← Pon aquí tus imágenes
-│   ├── photo1.jpg          ← Foto 1 del photostrip
-│   ├── photo2.jpg          ← Foto 2 del photostrip
-│   ├── photo3.jpg          ← Foto 3 del photostrip
-│   ├── photo4.jpg          ← Foto 4 del photostrip
-│   └── background.jpg      ← (opcional) Fondo HD de la página
-│
-└── README.md               ← Esta guía
+└── docs/                       ← Todo vive aquí (GitHub Pages)
+    ├── index.html              ← Página principal
+    ├── css/
+    │   └── styles.css          ← Todos los estilos visuales
+    ├── js/
+    │   ├── config.js           ← ⭐ Configuración principal (edita aquí)
+    │   ├── fireworks.js        ← Motor de fuegos artificiales (canvas)
+    │   ├── photostrip.js       ← Lógica de la galería de fotos
+    │   ├── audio.js            ← Gestión de audios
+    │   └── app.js              ← Lógica principal de la app
+    ├── audio/                  ← Archivos de audio (.mp3)
+    │   ├── ambient.mp3         (música de fondo suave)
+    │   ├── click.mp3           (sonido al presionar Celebrar)
+    │   ├── celebration.mp3     (sonido de celebración)
+    │   └── soft.mp3            (sonido suave si no es cumpleaños)
+    └── images/                 ← Fotos del photostrip
+        ├── photo1.jpg
+        ├── photo2.jpg
+        │   ...
+        └── photo31.jpg
 ```
 
 ---
 
-## ⚡ Inicio rápido
+## 🌐 GitHub Pages
 
-1. **Abre** `html/index.html` en tu navegador (doble clic o arrastra al navegador).
-2. Listo. No requiere servidor, instalación ni frameworks.
+La página está publicada en:
+**https://juancan00.github.io/birthday/**
 
-> **Nota:** Para que los audios funcionen correctamente en Chrome/Firefox
-> necesitas servir los archivos desde un servidor local o simplemente
-> usarlo en Firefox que es más permisivo con archivos locales.
-> Con servidor local (VS Code + extensión Live Server) todo funciona perfecto.
+Configuración en Settings → Pages:
+- Branch: `main`
+- Folder: `/docs`
 
 ---
 
-## ✏️ Personalización — Solo edita `js/config.js`
+## ✏️ Personalización — Solo edita `docs/js/config.js`
 
 ### 1. Cambiar la fecha del cumpleaños
 ```js
@@ -79,35 +71,32 @@ sadMessages: [
 ```
 
 ### 4. Cambiar los audios
-Reemplaza los archivos en `/audio/` con los tuyos (mismo nombre),
+Reemplaza los archivos en `docs/audio/` con los tuyos (mismo nombre),
 o cambia las rutas en config.js:
 ```js
 audio: {
-  celebration: "../audio/mi-cancion.mp3",
-  // ...
+  celebration: "audio/mi-cancion.mp3",
 }
 ```
 
 ### 5. Agregar fondo de imagen
-En `css/styles.css`, busca `.bg-overlay` y cambia el comentario:
+En `docs/css/styles.css`, busca `.bg-overlay` y reemplaza el gradiente:
 ```css
-/* Reemplaza el gradiente con: */
-background: url('../images/background.jpg') center/cover no-repeat fixed;
+background: url('images/background.jpg') center/cover no-repeat fixed;
 ```
 
 ---
 
-## 🖼️ Agregar tus fotos al photostrip
+## 🖼️ Agregar o editar fotos
 
-1. Nombra tus fotos: `photo1.jpg`, `photo2.jpg`, `photo3.jpg`, `photo4.jpg`
-2. Colócalas en la carpeta `images/`
+1. Nombra tus fotos `photo1.jpg` hasta `photo31.jpg`
+2. Colócalas en `docs/images/`
 3. Tamaño recomendado: **800×1000px** (vertical, aspecto 4:5)
-4. Si quieres cambiar los pies de foto o agregar más fotos,
-   edita los bloques `.photo-item` en `html/index.html`:
+4. Para cambiar los pies de foto edita los bloques `.photo-item` en `docs/index.html`:
 
 ```html
 <div class="photo-item" style="--rot: -2deg; --delay: 0.2s">
-  <img src="../images/mi-foto.jpg" alt="Mi foto" />
+  <img src="images/mi-foto.jpg" alt="Mi foto" />
   <span class="photo-caption">mi mensaje 💕</span>
 </div>
 ```
@@ -116,12 +105,11 @@ background: url('../images/background.jpg') center/cover no-repeat fixed;
 
 ## 🎆 Personalizar los fuegos artificiales
 
-En `config.js`:
 ```js
 fireworks: {
-  count:    6,      // Más número = más cohetes simultáneos
-  duration: 12000,  // Duración en ms. 0 = infinito
-  shapes: ["circle", "heart", "star", "burst"]  // Quita los que no quieras
+  count:    6,      // cohetes simultáneos
+  duration: 12000,  // duración en ms (0 = infinito)
+  shapes: ["circle", "heart", "star", "burst"]
 }
 ```
 
@@ -129,7 +117,7 @@ fireworks: {
 
 ## 🎨 Personalizar colores
 
-En `css/styles.css`, cambia las variables:
+En `docs/css/styles.css`:
 ```css
 :root {
   --rose:       #e8a0b4;   /* color principal */
@@ -141,32 +129,29 @@ En `css/styles.css`, cambia las variables:
 
 ---
 
-## 📱 ¿Es responsive?
+## 🔊 Audios
 
-Sí. Funciona en móvil, tablet y escritorio.
-En móvil, el photostrip se convierte en una tira horizontal deslizable.
+| Archivo | Cuándo suena |
+|---|---|
+| `ambient.mp3` | Música de fondo al abrir la página |
+| `click.mp3` | Al presionar el botón "Celebrar" |
+| `celebration.mp3` | Al confirmar que es cumpleaños 🎉 |
+| `soft.mp3` | Cuando no es cumpleaños |
 
----
-
-## 🔊 ¿Qué pasa si no tengo archivos de audio?
-
-La página funciona perfectamente sin audio.
-Si los archivos no existen, los errores se capturan silenciosamente
-y simplemente no suena nada.
-
-Puedes conseguir audios libres de derechos en:
+Audios gratuitos en:
 - [Pixabay Music](https://pixabay.com/music/)
-- [Free Music Archive](https://freemusicarchive.org/)
+- [Freesound](https://freesound.org/)
 - [Zapsplat](https://www.zapsplat.com/)
 
 ---
 
 ## 💡 Consejos
 
-- Para probar el cumpleaños, ingresa la fecha que pusiste en `config.js`.
 - La tecla **ENTER** también valida la fecha.
-- El día se avanza automáticamente al campo de mes cuando escribes 2 dígitos.
-- Puedes tener **varios mensajes** en los arrays; se elige uno aleatoriamente cada vez.
+- El día avanza automáticamente al campo de mes al escribir 2 dígitos.
+- Puedes tener varios mensajes en los arrays; se elige uno al azar cada vez.
+- La galería de fotos se divide en 4 tiras de 8 fotos navegables con flechas ‹ ›.
+- En móvil puedes deslizar entre tiras con swipe.
 
 ---
 
